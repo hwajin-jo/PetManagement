@@ -89,7 +89,7 @@ public class MemberPage extends JFrame{
 		setVisible(true);
 		// displayAll();
 		
-		// 리스트 아이템 선택 시 텍스트 필도로 값 넣기
+		// 리스트 아이템 선택 시 텍스트 필드로 값 넣기
 		list.addItemListener(new ItemListener() {
 			
 			@Override

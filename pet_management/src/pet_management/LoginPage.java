@@ -1,20 +1,16 @@
 package pet_management;
 
-<<<<<<< HEAD:pet_management/src/pet_management/LoginPage.java
-public class LoginPage {
-=======
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
->>>>>>> e0e6b8d81a952154b0f081bcb93e78bade845fc3:pet_management/src/pet_management/Login.java
 
+public class LoginPage extends JFrame{
 
-public class Login extends JFrame {
-
-	public Login() {
+	public LoginPage() {
 		//판넬 만들어주기
 		JPanel p = new JPanel();
 		setLocationRelativeTo(p);
@@ -74,31 +70,32 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		loginButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// 로그인을 성공하면 메인화면으로 바꿔주기
-			String id = idtext.getText();
-			String pwd = pwdtext.getText();
-			
-			AdminDao dao = new AdminDao();
-			int result = dao.login(id,pwd);
-			//데이터베이스 안의 id와 비밀번호 받아서 result == 0 -> 로그인, result ==1 로그인 실패창
-			if(result == 1) {
-				if(id.equals("admin")) {
-					JOptionPane.showMessageDialog(null, "로그인에 성공했습니다.");
-					ManagerPage adminPage = new ManagerPage();
-					dispose();//이전화면 닫기
-				}
-			}else if (result ==0){
-				JOptionPane.showMessageDialog(null, "로그인에 실패했습니다.");
-			}
-			
-			
-				
-			}
-		});
+		// 로그인버튼 코드 수정필요
+//		loginButton.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// 로그인을 성공하면 메인화면으로 바꿔주기
+//			String id = idtext.getText();
+//			String pwd = pwdtext.getText();
+//			
+//			AdminDao dao = new AdminDao();
+//			int result = dao.login(id,pwd);
+//			//데이터베이스 안의 id와 비밀번호 받아서 result == 0 -> 로그인, result ==1 로그인 실패창
+//			if(result == 1) {
+//				if(id.equals("admin")) {
+//					JOptionPane.showMessageDialog(null, "로그인에 성공했습니다.");
+//					ManagerPage adminPage = new ManagerPage();
+//					dispose();//이전화면 닫기
+//				}
+//			}else if (result ==0){
+//				JOptionPane.showMessageDialog(null, "로그인에 실패했습니다.");
+//			}
+//			
+//			
+//				
+//			}
+//		});
 	}
 
 
