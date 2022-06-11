@@ -9,14 +9,16 @@ import javax.imageio.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
+import manager.ManagerDao;
+
 public class LoginPage extends JFrame{
 
 	public LoginPage() {
-		//ÆÇ³Ú ¸¸µé¾îÁÖ±â
+		//íŒë„¬ ë§Œë“¤ì–´ì£¼ê¸°
 		JPanel p = new JPanel();
 		setLocationRelativeTo(p);
 		
-		//·Î±×ÀÎ°ú ¾ÆÀÌµğ ÀÌ¹ÌÁö ÁÖ±â
+		//ë¡œê·¸ì¸ê³¼ ì•„ì´ë”” ì´ë¯¸ì§€ ì£¼ê¸°
 		BufferedImage myPicture;
 		BufferedImage myPicture2;
 		try {
@@ -35,7 +37,7 @@ public class LoginPage extends JFrame{
 			e1.printStackTrace();
 		}
 		
-		JLabel titlelb = new JLabel("·Î±×ÀÎ");
+		JLabel titlelb = new JLabel("ë¡œê·¸ì¸");
 		titlelb.setHorizontalAlignment(SwingConstants.CENTER);
 		p.add(titlelb);
 		
@@ -47,13 +49,13 @@ public class LoginPage extends JFrame{
 		add(pwdtext);
 		pwdtext.setEchoChar('*');
 		
-		JButton loginButton = new JButton("·Î±×ÀÎ");
+		JButton loginButton = new JButton("ë¡œê·¸ì¸");
 		
 		
 	
 		add(loginButton);
 		
-		Font font = new Font ("¸¼Àº °íµñ", Font.BOLD, 30);
+		Font font = new Font ("ë§‘ì€ ê³ ë”•", Font.BOLD, 30);
 		titlelb.setFont(font);
 		
 		idtext.setBounds(150, 150, 200, 30);
@@ -67,47 +69,39 @@ public class LoginPage extends JFrame{
 		
 		add(p);
 		setSize(500,500);
-		setTitle("µ¿¹°º´¿ø °ü¸® ÇÁ·Î±×·¥");
+		setTitle("ë™ë¬¼ë³‘ì› ê´€ë¦¬ í”„ë¡œê·¸ë¨");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		// ·Î±×ÀÎ¹öÆ° ÄÚµå ¼öÁ¤ÇÊ¿ä
-//		loginButton.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// ·Î±×ÀÎÀ» ¼º°øÇÏ¸é ¸ŞÀÎÈ­¸éÀ¸·Î ¹Ù²ãÁÖ±â
-//			String id = idtext.getText();
-//			String pwd = pwdtext.getText();
-//			
-//			AdminDao dao = new AdminDao();
-//			int result = dao.login(id,pwd);
-//			//µ¥ÀÌÅÍº£ÀÌ½º ¾ÈÀÇ id¿Í ºñ¹Ğ¹øÈ£ ¹Ş¾Æ¼­ result == 0 -> ·Î±×ÀÎ, result ==1 ·Î±×ÀÎ ½ÇÆĞÃ¢
-//			if(result == 1) {
-//				if(id.equals("admin")) {
-//					JOptionPane.showMessageDialog(null, "·Î±×ÀÎ¿¡ ¼º°øÇß½À´Ï´Ù.");
-//					ManagerPage adminPage = new ManagerPage();
-//					dispose();//ÀÌÀüÈ­¸é ´İ±â
-//				}
-//			}else if (result ==0){
-//				JOptionPane.showMessageDialog(null, "·Î±×ÀÎ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
-//			}
-//			
-//			
-//				
-//			}
-//		});
-		
+//		 ë¡œê·¸ì¸ë²„íŠ¼ ì½”ë“œ ìˆ˜ì •í•„ìš”
 		loginButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Áø·á°ü¸® ÆäÀÌÁö·Î ÀÌµ¿	
-				MenuPage menuPage = new MenuPage();
-				dispose();
+				// ë¡œê·¸ì¸ì„ ì„±ê³µí•˜ë©´ ë©”ì¸í™”ë©´ìœ¼ë¡œ ë°”ê¿”ì£¼ê¸°
+			String managerID = idtext.getText();
+			String managerPWD = pwdtext.getText();
+			ManagerDao managerDao = new ManagerDao();
+			System.out.println(managerID+managerPWD);
+			int result = managerDao.login(managerID,managerPWD);
+			//ë°ì´í„°ë² ì´ìŠ¤ ì•ˆì˜ idì™€ ë¹„ë°€ë²ˆí˜¸ ë°›ì•„ì„œ result == 0 -> ë¡œê·¸ì¸, result ==1 ë¡œê·¸ì¸ ì‹¤íŒ¨ì°½
+			if(result == 1) {
+				if(managerID.equals("manager1")) {
+					JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
+					MenuPage menuPage = new MenuPage();
+					dispose();//ì´ì „í™”ë©´ ë‹«ê¸°
+				}else {
+					JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+				}
+			}else if (result == 0){
+				JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+			}
+			
+			
 				
 			}
-		});
+		});	//ë¡œê·¸ì¸ë²„íŠ¼ ì½”ë“œ
+		
 	}
 
 
