@@ -5,9 +5,9 @@ public class ExaminationDto {
 	int memberID;
 	String memberName;
 	String examContent;
-	int examCost;
+	String examCost;
 
-	public ExaminationDto(int examID,int memberID,String memberName,String examContent,int examCost) {
+	public ExaminationDto(int examID,int memberID,String memberName,String examContent,String examCost) {
 		this.examID = examID;
 		this.memberID = memberID;
 		this.memberName = memberName;
@@ -47,12 +47,13 @@ public class ExaminationDto {
 		this.examContent = examContent;
 	}
 
-	public int getExamCost() {
+	public String getExamCost() {
 		return examCost;
 	}
 
-	public void setExamCost(int examCost) {
+	public void setExamCost(String examCost) {
 		this.examCost = examCost;
 	}
 	
 }
+
