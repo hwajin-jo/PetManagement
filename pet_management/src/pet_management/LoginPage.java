@@ -7,6 +7,7 @@ import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 public class LoginPage extends JFrame{
 
@@ -19,7 +20,7 @@ public class LoginPage extends JFrame{
 		BufferedImage myPicture;
 		BufferedImage myPicture2;
 		try {
-			myPicture = ImageIO.read(new File("C:\\PetManagement\\id.png"));
+			myPicture = ImageIO.read(new File("C:\\PetManagement\\id.png"));	
 			myPicture2 = ImageIO.read(new File("C:\\PetManagement\\pwd.png"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture2));
@@ -96,6 +97,17 @@ public class LoginPage extends JFrame{
 //				
 //			}
 //		});
+		
+		loginButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 진료관리 페이지로 이동	
+				MenuPage menuPage = new MenuPage();
+				dispose();
+				
+			}
+		});
 	}
 
 

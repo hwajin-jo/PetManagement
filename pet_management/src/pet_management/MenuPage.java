@@ -71,7 +71,10 @@ public class MenuPage extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 진료관리 페이지로 이동				
+				// 진료관리 페이지로 이동	
+				ExaminationPage exPage = new ExaminationPage();
+				dispose();
+				
 			}
 		});
 		
