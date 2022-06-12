@@ -82,7 +82,7 @@ public class LoginPage extends JFrame{
 			String managerID = idtext.getText();
 			String managerPWD = pwdtext.getText();
 			ManagerDao managerDao = new ManagerDao();
-			
+			System.out.println(managerID+managerPWD);
 			int result = managerDao.login(managerID,managerPWD);
 			//데이터베이스 안의 id와 비밀번호 받아서 result == 0 -> 로그인, result ==1 로그인 실패창
 			if(result == 1) {
