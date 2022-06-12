@@ -16,19 +16,19 @@ public class MenuPage extends JFrame{
 		
 		JPanel p = new JPanel();
 		setLocationRelativeTo(p);
-		Label l1 = new Label("µ¿¹°º´¿ø °ü¸® ÇÁ·ÎÁ§Æ®");
+		Label l1 = new Label("ë™ë¬¼ë³‘ì› ê´€ë¦¬ í”„ë¡œì íŠ¸");
 		add(l1);
 		
-		JButton j1 = new JButton("È¸¿ø°ü¸®");
-		JButton j2 = new JButton("¿¹¾à°ü¸®");
-		JButton j3 = new JButton("Áø·á°ü¸®");
-		JButton j4 = new JButton("·Î±×¾Æ¿ô");
+		JButton j1 = new JButton("íšŒì›ê´€ë¦¬");
+		JButton j2 = new JButton("ì˜ˆì•½ê´€ë¦¬");
+		JButton j3 = new JButton("ì§„ë£Œê´€ë¦¬");
+		JButton j4 = new JButton("ë¡œê·¸ì•„ì›ƒ");
 		add(j1);
 		add(j2);
 		add(j3);
 		add(j4);
 		
-		Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 30);
+		Font font = new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 30);
 		l1.setFont(font);
 		
 		l1.setBounds(90, 10, 10000, 100);
@@ -40,51 +40,52 @@ public class MenuPage extends JFrame{
 		
 		add(p);
 		setSize(500, 500);
-		setTitle("¸Ş´º È­¸é");
+		setTitle("ë©”ë‰´ í™”ë©´");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
 		
-		// È¸¿ø°ü¸® ¹öÆ° ´­¸² °¨Áö
+		// íšŒì›ê´€ë¦¬ ë²„íŠ¼ ëˆŒë¦¼ ê°ì§€
 		j1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// È¸¿ø°ü¸® ÆäÀÌÁö·Î ÀÌµ¿
+				// íšŒì›ê´€ë¦¬ í˜ì´ì§€ë¡œ ì´ë™
 				MemberPage mmPage= new MemberPage();
 				dispose();
 			}
 		});
 		
-		// ¿¹¾à°ü¸® ¹öÆ° ´­¸² °¨Áö
+		// ì˜ˆì•½ê´€ë¦¬ ë²„íŠ¼ ëˆŒë¦¼ ê°ì§€
 		j2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// ¿¹¾à°ü¸® ÆäÀÌÁö·Î ÀÌµ¿
-				
+				// ì˜ˆì•½ê´€ë¦¬ í˜ì´ì§€ë¡œ ì´ë™
+				ReservationPage exPage = new ReservationPage();
+				dispose();
 			}
 		});
 		
-		// Áø·á°ü¸® ¹öÆ° ´­¸² °¨Áö
+		// ì§„ë£Œê´€ë¦¬ ë²„íŠ¼ ëˆŒë¦¼ ê°ì§€
 		j3.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Áø·á°ü¸® ÆäÀÌÁö·Î ÀÌµ¿	
+				// ì§„ë£Œê´€ë¦¬ í˜ì´ì§€ë¡œ ì´ë™	
 				ExaminationPage exPage = new ExaminationPage();
 				dispose();
 				
 			}
 		});
 		
-		// ·Î±×¾Æ¿ô ¹öÆ° ´­¸² °¨Áö
+		// ë¡œê·¸ì•„ì›ƒ ë²„íŠ¼ ëˆŒë¦¼ ê°ì§€
 		j4.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// ·Î±×¾Æ¿ô ±â´É ¼öÇà
-				JOptionPane.showMessageDialog(null, "·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù.");
+				// ë¡œê·¸ì•„ì›ƒ ê¸°ëŠ¥ ìˆ˜í–‰
+				JOptionPane.showMessageDialog(null, "ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 				dispose();
 				LoginPage login = new LoginPage();
 				

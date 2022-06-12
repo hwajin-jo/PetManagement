@@ -26,38 +26,38 @@ public class MemberPage extends JFrame{
 	
 	 List list;
 
-	// È¸¿ø°ü¸® ÆäÀÌÁö
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public MemberPage() {
 		
 		JPanel jmp = new JPanel();
 		
-		Label l1 = new Label("È¸¿ø °ü¸® ÆäÀÌÁö", SwingConstants.CENTER);
-		Label l2 = new Label("È¸¿ø ¾ÆÀÌµğ");
-		Label l3 = new Label("µ¿¹° ÀÌ¸§");
-		Label l4 = new Label("µ¿¹° Á¾");
-		Label l5 = new Label("º¸È£ÀÚ ÀÌ¸§");
-		Label l6 = new Label("ÀüÈ­¹øÈ£");
-		Label l7 = new Label("¹æ¹® ÀÌÀ¯");
+		Label l1 = new Label("íšŒì›ê´€ë¦¬ í˜ì´ì§€", SwingConstants.CENTER);
+		Label l2 = new Label("íšŒì›ì•„ì´ë””");
+		Label l3 = new Label("ë™ë¬¼ ì´ë¦„");
+		Label l4 = new Label("ë™ë¬¼ ì¢…");
+		Label l5 = new Label("ë³´í˜¸ì ì´ë¦„");
+		Label l6 = new Label("ì „í˜¸ë²ˆí˜¸");
+		Label l7 = new Label("ë°©ë¬¸ì´ìœ ");
 		add(l1); add(l2); add(l3);
 		add(l4); add(l5); add(l6); add(l7);
 		
-		TextField t1 = new TextField(); // È¸¿ø ¾ÆÀÌµğ
-		TextField t2 = new TextField(); // µ¿¹° ÀÌ¸§
-		TextField t3 = new TextField(); // µ¿¹° Á¾
-		TextField t4 = new TextField(); // º¸È£ÀÚ ÀÌ¸§
-		TextField t5 = new TextField(); // ÀüÈ­¹øÈ£
-		TextField t6 = new TextField(); // ¹æ¹® ÀÌÀ¯
+		TextField t1 = new TextField(); // íšŒì›ì•„ì´ë””
+		TextField t2 = new TextField(); // ë™ë¬¼ ì´ë¦„
+		TextField t3 = new TextField(); // ë™ë¬¼ ì¢…
+		TextField t4 = new TextField(); // ë³´í˜¸ì ì´ë¦„
+		TextField t5 = new TextField(); // ì „í™”ë²ˆí˜¸
+		TextField t6 = new TextField(); // ë°©ë¬¸ ì´ìœ 
 		add(t1); add(t2); add(t3); add(t4); add(t5); add(t6);
 		
-		Font font1 = new Font("¸¼Àº °íµñ", Font.BOLD, 25);
+		Font font1 = new Font("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", Font.BOLD, 25);
 		l1.setFont(font1);
 		
-		JButton save = new JButton("ÀúÀå");
-		JButton update = new JButton("¼öÁ¤");
-		JButton delete = new JButton("»èÁ¦");
-		JButton search = new JButton("Á¶È¸");
-		JButton reset = new JButton("Áö¿ì±â");
-		JButton back = new JButton("µÚ·Î°¡±â");
+		JButton save = new JButton("ì €ì¥");
+		JButton update = new JButton("ìˆ˜ì •");
+		JButton delete = new JButton("ì‚­ì œ");
+		JButton search = new JButton("ì¡°íšŒ");
+		JButton reset = new JButton("ì§€ìš°ê¸°");
+		JButton back = new JButton("ë’¤ë¡œê°€ê¸°");
 		add(save);
 		add(update);
 		add(delete);
@@ -67,18 +67,18 @@ public class MemberPage extends JFrame{
 		
 		 list = new List();
 		 add(list);
-		 Font font2 = new Font("¸¼Àº °íµñ", 0, 15);
+		 Font font2 = new Font("ë§‘ì€ ê³ ë”•", 0, 15);
 		 list.setFont(font2);
 		
-		l1.setBounds(300, 30, 200, 40); // È¸¿ø°ü¸® ÆäÀÌÁö 
+		l1.setBounds(300, 30, 200, 40); 
 		
 		
-		l2.setBounds(350, 100, 70, 30); // È¸¿ø ¾ÆÀÌµğ
-		l3.setBounds(530, 100, 70, 30); // µÕ¹° ÀÌ¸§
-		l4.setBounds(350, 130, 70, 30); // µ¿¹° Á¾
-		l5.setBounds(530, 130, 70, 30); // º¸È£ÀÚ ÀÌ¸§
-		l6.setBounds(350, 160, 70, 30); // ÀüÈ­¹øÈ£
-		l7.setBounds(530, 160, 70, 30); // ¹æ¹®ÀÌÀ¯
+		l2.setBounds(350, 100, 70, 30); 
+		l3.setBounds(530, 100, 70, 30); 
+		l4.setBounds(350, 130, 70, 30); 
+		l5.setBounds(530, 130, 70, 30); 
+		l6.setBounds(350, 160, 70, 30); 
+		l7.setBounds(530, 160, 70, 30); 
 		
 		t1.setBounds(430, 100, 80, 30);
 		t2.setBounds(600, 100, 100, 30);
@@ -98,11 +98,11 @@ public class MemberPage extends JFrame{
 		
 		add(jmp);
 		setSize(800, 790);
-		setTitle("È¸¿ø°ü¸®È­¸é");
+		setTitle("íšŒì›ê´€ë¦¬í™”ë©´");
 		setResizable(false);
 		Dimension frameSize = jmp.getSize();
 		
-		// ¸ğ´ÏÅÍ Å©±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 		setResizable(false);
 		setLocationRelativeTo(jmp);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -111,7 +111,7 @@ public class MemberPage extends JFrame{
 		setVisible(true);
 		 displayAll();
 		
-		// ¸®½ºÆ® ¾ÆÀÌÅÛ ¼±ÅÃ ½Ã ÅØ½ºÆ® ÇÊµå·Î °ª ³Ö±â
+		// ë¦¬ìŠ¤íŠ¸ í´ë¦­í•˜ë©´ í…ìŠ¤íŠ¸ë¡œ ë‚˜íƒ€ë‚´ê¸°
 		list.addItemListener(new ItemListener() {
 			
 			@Override
@@ -128,7 +128,7 @@ public class MemberPage extends JFrame{
 			}
 		});
 		
-		// ÀúÀåÇÏ±â
+		// ì €ì¥ë²„íŠ¼
 		save.addActionListener(new ActionListener() {
 			
 			@Override
@@ -141,13 +141,13 @@ public class MemberPage extends JFrame{
 				String visitReason = t6.getText();
 				MemberDao dao = new MemberDao();
 				dao.insertMember(memberID, memberName, memberSpecies, hostName, hostPhoneNum, visitReason);
-				JOptionPane.showMessageDialog(null, "ÀúÀå ¿Ï·á");
+				JOptionPane.showMessageDialog(null, "ì €ì¥ ì™„ë£Œ");
 				displayAll();
 				
 			}
 		});
 		
-		// ¼öÁ¤ÇÏ±â
+		// ìˆ˜ì •ë²„íŠ¼
 		update.addActionListener(new ActionListener() {
 			
 			@Override
@@ -160,12 +160,12 @@ public class MemberPage extends JFrame{
 				String visitReason = t6.getText();
 				MemberDao dao = new MemberDao();
 				dao.updateMember(memberID, memberName, memberSpecies, hostName, hostPhoneNum, visitReason);
-				JOptionPane.showMessageDialog(null, "¼öÁ¤ ¿Ï·á");
+				JOptionPane.showMessageDialog(null, "ìˆ˜ì • ì™„ë£Œ");
 				displayAll();
 			}
 		});
 		
-		// »èÁ¦ÇÏ±â
+		// ì‚­ì œë²„íŠ¼
 		delete.addActionListener(new ActionListener() {
 			
 			@Override
@@ -173,12 +173,12 @@ public class MemberPage extends JFrame{
 				int memberID = Integer.parseInt(t1.getText());
 				MemberDao dao = new MemberDao();
 				dao.deleteMember(memberID);
-				JOptionPane.showMessageDialog(null, "»èÁ¦ ¿Ï·á");
+				JOptionPane.showMessageDialog(null, "ì‚­ì œ ì™„ë£Œ");
 				displayAll();
 			}
 		});
 		
-		// Á¶È¸ÇÏ±â
+		// ì¡°íšŒë²„íŠ¼
 		search.addActionListener(new ActionListener() {
 			
 			@Override
@@ -197,7 +197,7 @@ public class MemberPage extends JFrame{
 			}
 		}); 
 		
-		// µÚ·Î °¡±â
+		// ì§€ìš°ê¸° ë²„íŠ¼
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -206,7 +206,7 @@ public class MemberPage extends JFrame{
             }
         });
         
-        // Áö¿ì±â
+        // ë’¤ë¡œê°€ê¸°
         reset.addActionListener(new ActionListener() {
 			
 			@Override
@@ -224,7 +224,7 @@ public class MemberPage extends JFrame{
         	
 	}
 	
-	// È­¸é Ãâ·Â
+	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½
     private void displayAll() {
     	list.removeAll();
     	MemberDao dao = new MemberDao();
