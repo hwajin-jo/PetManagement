@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>pet_management</name>
+=======
+	<name>PetManagement</name>
+>>>>>>> 2e6e1544680f21fa316faecb1eae9cfce37dcac2
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
+<<<<<<< HEAD
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
@@ -25,4 +30,9 @@
 			</matcher>
 		</filter>
 	</filteredResources>
+=======
+	</buildSpec>
+	<natures>
+	</natures>
+>>>>>>> 2e6e1544680f21fa316faecb1eae9cfce37dcac2
 </projectDescription>
