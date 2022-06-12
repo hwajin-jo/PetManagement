@@ -58,7 +58,7 @@ public class MemberDao {
 			pstmt.setString(5, visitReason);
 			int result = pstmt.executeUpdate();
 			if(result == 1) {
-				System.out.println("¼öÁ¤ ¼º°ø");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class MemberDao {
 			pstmt.setInt(1, memberID);
 			int result = pstmt.executeUpdate();
 			if ( result == 1 ) {
-				System.out.println("»èÁ¦ ¼º°ø");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -99,7 +99,7 @@ public class MemberDao {
         	
 	} // end deleteMember
 
-	public MemberDto searchMember(int memberID) {
+	public MemberDto searchMember(String hostName) {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -107,9 +107,9 @@ public class MemberDao {
 	    
 	    try {
 			conn = DriverManager.getConnection(url, userid, password);
-			String query = "select * from petMember where memberID = ?";
+			String query = "select * from petMember where hostName = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, memberID);
+			pstmt.setString(1, hostName);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

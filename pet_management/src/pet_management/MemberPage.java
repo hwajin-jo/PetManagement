@@ -183,10 +183,9 @@ public class MemberPage extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String str = t1.getText();
-				int memberID = Integer.parseInt(str);
+				String hostName = t4.getText();
 				MemberDao dao = new MemberDao();
-				MemberDto dto = dao.searchMember(memberID);
+				MemberDto dto = dao.searchMember(hostName);
 				
 				t1.setText(String.valueOf(dto.getMemberID()));
 				t2.setText(dto.getMemberName());
@@ -224,7 +223,7 @@ public class MemberPage extends JFrame{
         	
 	}
 	
-	// ȭ�� ���
+	// 화면출력
     private void displayAll() {
     	list.removeAll();
     	MemberDao dao = new MemberDao();
