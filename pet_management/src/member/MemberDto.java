@@ -8,6 +8,7 @@ public class MemberDto {
 	String hostName;
 	String hostPhoneNum;
 	String visitReason;
+	// memberdto 변경
 	
 	public int getMemberID() {
 		return memberID;
