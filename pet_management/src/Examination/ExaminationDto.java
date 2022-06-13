@@ -15,6 +15,10 @@ public class ExaminationDto {
 		this.examCost = examCost;
 	}
 
+	public ExaminationDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getExamID() {
 		return examID;
 	}
@@ -56,4 +60,3 @@ public class ExaminationDto {
 	}
 	
 }
-

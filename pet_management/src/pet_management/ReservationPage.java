@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -46,7 +47,7 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 		add(lblMemberName);
 		add(lblNext);
 
-		TextField t1 = new TextField(); // 회원 아이디 회원목록보여주기
+		// TextField t1 = new TextField(); // 회원 아이디 회원목록보여주기
 
 		listCombo = new ArrayList<String>();
 		selectCombo();
@@ -85,17 +86,17 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 
 		lblTitle.setBounds(300, 30, 200, 40); // 예약 관리 페이지
 
-		lblMemberID.setBounds(50, 120, 70, 30); // 회원 아이디
-		jcmemberID.setBounds(120, 120, 70, 30);
+		lblMemberID.setBounds(65, 120, 70, 30); // 회원 아이디
+		jcmemberID.setBounds(135, 120, 70, 30);
 
-		lblMemberName.setBounds(210, 120, 70, 30); // 동물 이름
-		txtMemberName.setBounds(280, 120, 70, 30);
+		lblMemberName.setBounds(225, 120, 70, 30); // 동물 이름
+		txtMemberName.setBounds(295, 120, 70, 30);
 
-		lblReserverID.setBounds(370, 120, 70, 30); // 예약 아이디
-		txtReserverID.setBounds(440, 120, 70, 30);
+		lblReserverID.setBounds(385, 120, 70, 30); // 예약 아이디
+		txtReserverID.setBounds(455, 120, 70, 30);
 
-		lblNext.setBounds(530, 120, 70, 30); // 예약 일자
-		txtNext.setBounds(600, 120, 70, 30);
+		lblNext.setBounds(545, 120, 70, 30); // 예약 일자
+		txtNext.setBounds(615, 120, 120, 30);
 
 		btnSave.setBounds(350, 200, 75, 30);
 		btnUpdate.setBounds(430, 200, 75, 30);
@@ -128,11 +129,12 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 			public void itemStateChanged(ItemEvent e) {
 				String str = list.getSelectedItem();
 				StringTokenizer st = new StringTokenizer(str);
-				t1.setText(st.nextToken());
+				jcmemberID.setSelectedItem(st.nextToken());
+
 				txtReserverID.setText(st.nextToken());
 				txtMemberName.setText(st.nextToken());
-				txtNext.setText(st.nextToken());	//예약일자
-				// t5.setText(st.nextToken());
+				txtNext.setText(st.nextToken() + " " + st.nextToken()); // 예약일자
+
 			}
 		});
 
@@ -148,8 +150,7 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 				txtNext.setText("");
 
 				if (str == "전체") {
-					System.out.println("전체...............");	//test
-
+					//System.out.println("전체..............."); // test
 					return;
 				}
 				int memberID = Integer.parseInt(str);
@@ -163,45 +164,39 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 			}
 		});
 
-		// 등록 -- 원본!!!
-//		btnSave.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				String str = jcmemberID.getSelectedItem().toString();
-//				int memberID = Integer.parseInt(str);
-//				int reservationID = Integer.parseInt(txtReserverID.getText());
-//				String memberName = txtMemberName.getText();
-//				String nextReserve = txtNext.getText();
-//				if (str == "전체" || nextReserve == null)
-//					return;
-//				
-//				ReservationDao dao = new ReservationDao();
-//				dao.insertReserve(reservationID, memberID, memberName, nextReserve);
-//				JOptionPane.showMessageDialog(null, "저장 완료");
-//				displayAll(memberID);
-//
-//			}
-//		});
-		
-		// 등록test
+		// 등록하기
 		btnSave.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String str = jcmemberID.getSelectedItem().toString();
-				int memberID = Integer.parseInt(str);
-				//int reservationID = Integer.parseInt(txtReserverID.getText());
-				String memberName = txtMemberName.getText();
 				String nextReserve = txtNext.getText();
-				if (str == "전체" || nextReserve == null)
+				// ------에러체크 -------------------------------------
+				if (str == "전체") {
+					JOptionPane.showMessageDialog(null, "회원아이디를 선택하세요.");
 					return;
-				
-				ReservationDao dao = new ReservationDao();
-				dao.insertReserve(memberID, memberName, nextReserve);
-				JOptionPane.showMessageDialog(null, "저장 완료");
-				displayAll(memberID);
+				}
+				if (nextReserve == null) {
+					JOptionPane.showMessageDialog(null, "예약 일자를 입력하세요.");
+					return;
+				}
 
+				int memberID = Integer.parseInt(str);
+				// int reservationID = Integer.parseInt(txtReserverID.getText());
+				String memberName = txtMemberName.getText();
+
+				// ------저장 -------------------------------------
+				ReservationDao dao = new ReservationDao();
+				int iCnt = dao.insertReserve(memberID, memberName, nextReserve);
+
+				if (iCnt == 0) {
+					JOptionPane.showMessageDialog(null, "예약 일자를 입력하세요.");
+
+				} else {
+
+					JOptionPane.showMessageDialog(null, "저장 완료");
+					displayAll(memberID);
+				}
 			}
 		});
 
@@ -211,16 +206,19 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String str = jcmemberID.getSelectedItem().toString();
-				if (str == "전체")
+				String nextReserve = txtNext.getText();
+				// ------에러체크 -------------------------------------
+				if (str == "전체") {
+					JOptionPane.showMessageDialog(null, "회원아이디를 선택하세요.");
 					return;
+				}
+
 				int memberID = Integer.parseInt(str);
 				int reservationID = Integer.parseInt(txtReserverID.getText());
-				String nextReserve = txtNext.getText();
 
 				ReservationDao dao = new ReservationDao();
 				dao.updateReserve(reservationID, memberID, nextReserve);
 				JOptionPane.showMessageDialog(null, "수정 완료");
-
 				displayAll(memberID);
 			}
 		});
@@ -231,8 +229,12 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String str = jcmemberID.getSelectedItem().toString();
-				if (str == "전체")
+				// ------에러체크 -------------------------------------
+				if (str == "전체") {
+					JOptionPane.showMessageDialog(null, "회원아이디를 선택하세요.");
 					return;
+				}
+
 				int memberID = Integer.parseInt(str);
 				int reservationID = Integer.parseInt(txtReserverID.getText());
 				ReservationDao dao = new ReservationDao();
@@ -247,7 +249,7 @@ public class ReservationPage extends JFrame { // 예약관리페이지
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String str = jcmemberID.getSelectedItem().toString();// t1.getText();
+				String str = jcmemberID.getSelectedItem().toString();
 				if (str == "전체")
 					str = "0";
 				int memberID = Integer.parseInt(str);

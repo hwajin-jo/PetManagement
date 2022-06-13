@@ -3,115 +3,324 @@ package pet_management;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.swing.*;
+
+import Examination.ExaminationDao;
+import Examination.ExaminationDto;
 
 public class ExaminationPage extends JFrame {
 
 	List list;
-	
-	public ExaminationPage () {
-		
-	JPanel jmp = new JPanel();
-	
-	Label l1 = new Label("Áø·á °ü¸® ÆäÀÌÁö", SwingConstants.CENTER);
-	Label l2 = new Label("È¸¿ø ¾ÆÀÌµğ");
-	Label l3 = new Label("Áø·á ¾ÆÀÌµğ");
-	Label l4 = new Label("µ¿¹° ÀÌ¸§");
-	Label l5 = new Label("Áø·á ³»¿ë");
-	Label l6 = new Label("Áø·á ºñ¿ë");
-	Label l7 = new Label("È¸¿ø ¸ñ·Ï");
-	
-	add(l1); add(l2); add(l3);
-	add(l4); add(l5); add(l6);
-	
-	//ÀÚ·á°ªÀÇ Á¦¸ñ
-	add(l7);
-	
-	//È¸¿ø ¾ÆÀÌµğÀÇ µå·Ó´Ù¿î ¹æ½ÄÀº Uneditable ComboBox
-	TextField t1 = new TextField(); //Áø·á ¾ÆÀÌµğ
-	TextField t2 = new TextField(); //µ¿¹° ÀÌ¸§
-	TextField t3 = new TextField(); //Áø·á ³»¿ë
-	TextField t4 = new TextField(); // Áø·á ºñ¿ë
-	
-	add(t1); add(t2); add(t3); add(t4); 
-	
-	Font font1 = new Font("¸¼Àº °íµñ", Font.BOLD, 25);
-	l1.setFont(font1);
-	
-	JButton register = new JButton("µî·Ï");
-	JButton delete = new JButton("»èÁ¦");
-	JButton search = new JButton("Á¶È¸");
-	JButton reset = new JButton("Áö¿ì±â");
-	JButton back = new JButton("µÚ·Î°¡±â");
-	add(register);
-	add(delete);
-	add(search);
-	add(reset);
-	add(back);
-	
-	 list = new List();
-	 add(list);
-	 Font font2 = new Font("¸¼Àº °íµñ", 0, 15);
-	 list.setFont(font2);
-	
-	l1.setBounds(300, 30, 200, 40); // Áø·á °ü¸® ÆäÀÌÁö 
-	l2.setBounds(425, 100, 75, 30); // È¸¿ø ¾ÆÀÌµğ
-	l3.setBounds(585, 100, 70, 30); // Áø·á ¾ÆÀÌµğ
-	l4.setBounds(425, 130, 70, 30); // µ¿¹° ÀÌ¸§
-	l5.setBounds(585, 130, 70, 30); // Áø·á ³»¿ë
-	l6.setBounds(425, 160, 70, 30); //Áø·á ºñ¿ë
-	
-	t1.setBounds(655, 100, 80, 30); //Áø·á ¾ÆÀÌµğ
-	t2.setBounds(495, 130, 80, 30);//µ¿¹° ÀÌ¸§
-	t3.setBounds(655, 130, 80, 30);//Áø·á ³»¿ë
-	t4.setBounds(495, 160, 80, 30);// Áø·á ºñ¿ë
-	
-	register.setBounds(430, 200, 75, 30);
-	delete.setBounds(510, 200, 75, 30);
-	search.setBounds(590, 200, 75, 30);
-	reset.setBounds(670, 200, 75, 30);
-	back.setBounds(690, 700, 90, 30);
-	
-	list.setBounds(50, 260, 700, 400);
-	
-	add(jmp);
-	setSize(800, 790);
-	setTitle("Áø·á°ü¸®È­¸é");
-	setResizable(false);
-	Dimension frameSize = jmp.getSize();
-	
-	// ¸ğ´ÏÅÍ Å©±â
-	setResizable(false);
-	setLocationRelativeTo(jmp);
-	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	jmp.setLocation((screenSize.width - frameSize.width)/2, (screenSize.height - frameSize.height)/2);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setVisible(true);
-	// displayAll();
-	
-//	// ¸®½ºÆ® ¾ÆÀÌÅÛ ¼±ÅÃ ½Ã ÅØ½ºÆ® ÇÊµå·Î °ª ³Ö±â
-//	list.addItemListener(new ItemListener() {
-//		
-//		@Override
-//		public void itemStateChanged(ItemEvent e) {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//	});
-	
-	//¸Ş´ºÆäÀÌÁö·Î °¡±â ¹öÆ°
-	back.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			MenuPage menuPage = new MenuPage();
-			dispose();
-			
+	ArrayList<String> listCombo;
+
+	public ExaminationPage() {
+
+		JPanel jmp = new JPanel();
+
+		Label l1 = new Label("ì§„ë£Œ ê´€ë¦¬ í˜ì´ì§€", SwingConstants.CENTER);
+		Label l2 = new Label("íšŒì› ì•„ì´ë””");
+		Label l3 = new Label("ì§„ë£Œ ì•„ì´ë””");
+		Label l4 = new Label("ë™ë¬¼ ì´ë¦„");
+		Label l5 = new Label("ì§„ë£Œ ë‚´ìš©");
+		Label l6 = new Label("ì§„ë£Œ ë¹„ìš©");
+
+		// ì…ë ¥ ë ˆì´ë¸”
+		add(l1);
+		add(l2);
+		add(l3);
+		add(l4);
+		add(l5);
+		add(l6);
+
+		TextField t1 = new TextField(); // ì§„ë£Œ ì•„ì´ë””
+		TextField t2 = new TextField(); // ë™ë¬¼ ì´ë¦„
+		TextField t3 = new TextField(); // ì§„ë£Œ ë‚´ìš©
+		TextField t4 = new TextField(); // ì§„ë£Œ ë¹„ìš©
+
+		add(t1);
+		add(t2);
+		add(t3);
+		add(t4);
+
+		Font font1 = new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 25);
+		l1.setFont(font1);
+
+		JButton register = new JButton("ë“±ë¡");
+		JButton delete = new JButton("ì‚­ì œ");
+		JButton search = new JButton("ì¡°íšŒ");
+		JButton clear = new JButton("ì§€ìš°ê¸°");
+		JButton back = new JButton("ë’¤ë¡œê°€ê¸°");
+		JButton updateEx = new JButton("ìˆ˜ì •");
+
+		add(register);
+		add(delete);
+		add(search);
+		add(clear);
+		add(back);
+		add(updateEx);
+
+		// íšŒì› ì•„ì´ë”” ì½¤ë³´
+		listCombo = new ArrayList<String>();
+		selectCombo();
+		JComboBox<?> jcmemberID = new JComboBox(listCombo.toArray(new String[listCombo.size()]));
+
+		// ë“œë¡­ë‹¤ìš´ ë°•ìŠ¤ íšŒì› ì•„ì´ë””
+		ExaminationDto dto = new ExaminationDto();
+		String[] memberIDs = {Integer.toString(dto.getMemberID())};
+		final JComboBox cb = new JComboBox(memberIDs);
+
+		jcmemberID.setBounds(495, 100, 80, 30);
+
+		add(jcmemberID);
+
+		list = new List();
+		add(list);
+		Font font2 = new Font("ë§‘ì€ ê³ ë”•", 0, 15);
+		list.setFont(font2);
+
+		l1.setBounds(300, 30, 200, 40); // ì§„ë£Œ ê´€ë¦¬ í˜ì´ì§€
+		l2.setBounds(425, 100, 70, 30); // íšŒì› ì•„ì´ë””
+		l3.setBounds(585, 100, 70, 30); // ì§„ë£Œ ì•„ì´ë””
+		l4.setBounds(425, 130, 70, 30); // ë™ë¬¼ ì´ë¦„
+		l5.setBounds(585, 130, 70, 30); // ì§„ë£Œ ë‚´ìš©
+		l6.setBounds(425, 160, 70, 30); // ì§„ë£Œ ë¹„ìš©
+
+		t1.setBounds(655, 100, 80, 30); // ì§„ë£Œ ì•„ì´ë””
+		t2.setBounds(495, 130, 80, 30);// ë™ë¬¼ ì´ë¦„
+		t3.setBounds(655, 130, 80, 30);// ì§„ë£Œ ë‚´ìš©
+		t4.setBounds(495, 160, 80, 30);// ì§„ë£Œ ë¹„ìš©
+
+		register.setBounds(420, 200, 70, 30);
+		delete.setBounds(490, 200, 70, 30);
+		search.setBounds(560, 200, 70, 30);
+		updateEx.setBounds(630, 200, 70, 30);
+		clear.setBounds(700, 200, 70, 30);
+		back.setBounds(690, 700, 85, 30);
+
+		list.setBounds(50, 260, 700, 400);
+
+		add(jmp);
+		setSize(800, 790);
+		setTitle("ì§„ë£Œê´€ë¦¬í™”ë©´");
+		setResizable(false);
+		Dimension frameSize = jmp.getSize();
+
+		// ëª¨ë‹ˆí„° í¬ê¸°
+		setResizable(false);
+		setLocationRelativeTo(jmp);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		jmp.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		// displayAll();
+
+		// ë©”ë‰´í˜ì´ì§€ë¡œ ê°€ê¸° ë²„íŠ¼
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				MenuPage menuPage = new MenuPage();
+				dispose();
+
+			}
+		});
+
+		// ë¦¬ìŠ¤íŠ¸ ì•„ì´í…œ ì„ íƒ ì‹œ í…ìŠ¤íŠ¸ í•„ë“œë¡œ ê°’ ë„£ê¸°
+		// ë¦¬ìŠ¤íŠ¸ ì•„ì´í…œ í´ë¦­í•˜ë©´ ìƒì„¸ ìˆ˜ì • í˜ì´ì§€ë¡œ ì´ë™
+		list.addItemListener((ItemListener) new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				String str = list.getSelectedItem();
+				System.out.println(str);
+				StringTokenizer st = new StringTokenizer(str);
+
+				cb.getSelectedItem();
+				st.nextToken();
+				t1.setText(st.nextToken());
+				t2.setText(st.nextToken());
+				t3.setText(st.nextToken());
+				t4.setText(st.nextToken());
+
+//            ExamDetailPage examDetailPage = new ExamDetailPage();
+//            dispose();
+			}
+
+			private Object makeObject(String item) {
+				return new Object() {
+					public String toString() {
+						return item;
+					}
+				};
+			}
+		});
+
+		// ë“±ë¡
+		register.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// int examID = Integer.parseInt(t1.getText());
+				String str = jcmemberID.getSelectedItem().toString();
+				int memberID = Integer.parseInt(str);
+				String memberName = t2.getText();
+				String examContent = t3.getText();
+				String examCost = t4.getText();
+				ExaminationDao dao = new ExaminationDao();
+				dao.registerEx(memberID, memberName, examContent, examCost);
+
+				displayAll();
+				JOptionPane.showMessageDialog(null, "ì €ì¥ ì™„ë£Œ");
+			}
+		});
+
+		// ì‚­ì œí•˜ê¸°
+		delete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String str = jcmemberID.getSelectedItem().toString(); // ì„ íƒí•œ íšŒì›ì•„ì´ë”” stringìœ¼ë¡œ
+				if (str == "ì „ì²´") {
+					return;
+				} else {
+					int memberID = Integer.parseInt(str);
+					int examID = Integer.parseInt(t1.getText());
+					;
+
+					ExaminationDao dao = new ExaminationDao();
+					dao.deleteEx(memberID, examID);
+					JOptionPane.showMessageDialog(null, "ì‚­ì œ ì™„ë£Œ");
+					displayAll();
+				}
+
+			}
+		});
+
+		// í…ìŠ¤íŠ¸ ì˜ì—­ ì§€ìš°ê¸°
+		clear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// ì§€ìš°ê¸° ë²„íŠ¼ ì½”ë“œ êµ¬í˜„
+				t1.setText("");
+				t2.setText("");
+				t3.setText("");
+				t4.setText("");
+			}
+		});
+
+		// ìˆ˜ì • ë²„íŠ¼ ëˆŒë¦¼ ê°ì§€
+		updateEx.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int memberID = dto.getMemberID();
+				int examID = Integer.parseInt(t1.getText());
+
+				String memberName = t2.getText();
+				String examContent = t3.getText();
+				String examCost = t4.getText();
+				ExaminationDao dao = new ExaminationDao();
+				dao.updateEx(examID, memberName, examContent, examCost);
+				JOptionPane.showMessageDialog(null, "ìˆ˜ì • ì™„ë£Œ");
+
+				dao = new ExaminationDao();
+				displayAll();
+			}
+		});
+
+		// examID ì§„ë£Œë²ˆí˜¸ë¡œ ê²€ìƒ‰ ê²°ê³¼		===========> ì‹œë„ì¤‘
+		// memberIDë¡œ ê²€ìƒ‰ ê²°ê³¼
+		// ì „ì²´ ê²€ìƒ‰ ê²°ê³¼
+		search.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String str = jcmemberID.getSelectedItem().toString();
+				System.out.println(str);
+
+				if (str.equals("ì „ì²´")) {
+					t1.setText(String.valueOf("0"));// ì§„ë£Œ ì•„ì´ë””
+					displayAll();
+				} else if (!str.equals("ì „ì²´")) {
+					// int memberID = Integer.parseInt(str);
+					int memberID =  Integer.valueOf(str);
+					ExaminationDao dao = new ExaminationDao();
+					ExaminationDto dto = dao.searchExbyMemberID(memberID);
+
+//				t1.setText(String.valueOf(dto.getExamID()));//ì§„ë£Œ ì•„ì´ë””
+//				t2.setText(String.valueOf(dto.getMemberName()));//ë™ë¬¼ ì´ë¦„
+//				t3.setText(String.valueOf(dto.getExamContent()));//ì§„ë£Œ ë‚´ìš©
+//				t4.setText(String.valueOf(dto.getExamCost()));// ì§„ë£Œ ë¹„ìš©
+					displayAllbyMemberID(memberID);
+					// displayAll();
+				}
+
+			}
+		});
+
+		// ë’¤ë¡œê°€ê¸°
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ManagerPage managerPage = new ManagerPage();
+			}
+		});
+
+	}
+
+	// íšŒì›ì•„ì´ë”” ì½¤ë³´
+	private void selectCombo() {
+		listCombo.clear();
+		listCombo.add("ì „ì²´");
+
+		ExaminationDao dao = new ExaminationDao();
+
+		ArrayList<ExaminationDto> allData = dao.selectEx();
+		for (ExaminationDto dto : allData) {
+			int memberID = dto.getMemberID();
+			listCombo.add(memberID + "");
 		}
-	});
-	
-	
+
+	}
+
+// í™”ë©´ ì¶œë ¥
+	private void displayAll() {
+		list.removeAll();
+		ExaminationDao dao = new ExaminationDao();
+		dao.selectEx();
+		ArrayList<ExaminationDto> allData = dao.selectEx();
+		for (ExaminationDto dto : allData) {
+			int examID = dto.getExamID();
+			int memberID = dto.getMemberID();
+			String memberName = dto.getMemberName();
+			String examContent = dto.getExamContent();
+			String examCost = dto.getExamCost();
+
+			list.add(memberID + "                    " + examID + "                   " + memberName
+					+ "                                  " + examContent + "                              " + examCost);
+		}
+
+	}
+
+	// í™”ë©´ ì¶œë ¥
+	private void displayAllbyMemberID(int memberID) {
+		list.removeAll();
+		ExaminationDao dao = new ExaminationDao();
+		dao.selectEx();
+
+		ArrayList<ExaminationDto> allData = dao.selectExBymemberID(memberID);
+		for (ExaminationDto dto : allData) {
+			int examID = dto.getExamID();
+			int memID = dto.getMemberID();
+			String memberName = dto.getMemberName();
+			String examContent = dto.getExamContent();
+			String examCost = dto.getExamCost();
+
+			list.add(memID + "                    " + examID + "                   " + memberName
+					+ "                                  " + examContent + "                              " + examCost);
+		}
 	}
 }
