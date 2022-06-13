@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 
 import member.MemberDao;
 import member.MemberDto;
-
+//표혜민
 public class MemberPage extends JFrame{
 	
 	 List list;
