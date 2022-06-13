@@ -1,0 +1,32 @@
+package pet_management;
+
+import java.awt.Label;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class MenuPage extends JFrame{
+	
+	public MenuPage() {
+		
+		JPanel p = new JPanel();
+		setLocationRelativeTo(p);
+		Label l1 = new Label("동물병원 관리 프로젝트");
+		add(l1);
+		
+		JButton j1 = new JButton("회원관리");
+		JButton j2 = new JButton("예약관리");
+		JButton j3 = new JButton("진료관리");
+		JButton j4 = new JButton("로그아웃");
+		add(j1);
+		add(j2);
+		add(j3);
+		add(j4);
+		
+		
+		
+	}
+	
+	
+}

@@ -1,0 +1,23 @@
+package member;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+public class MemberDao {
+	
+	String driver = "com.mysql.cj.jdbc.Driver";
+	String url = "jdbc:mysql://localhost:3306/petManage";
+	String userid = "root";
+	String password = "1234";
+
+	Connection conn = null;
+	Statement stmt = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	public void insertMember(int memberID, String memberName, String memberSpecies, String hostName,
+			String hostPhoneNum, String visitReason) {
+		// TODO Auto-generated method stub
+		
+	}
+}

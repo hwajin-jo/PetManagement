@@ -1,0 +1,81 @@
+package pet_management;
+
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class MenuPage extends JFrame{
+	
+	public MenuPage() {
+		
+		JPanel p = new JPanel();
+		setLocationRelativeTo(p);
+		Label l1 = new Label("동물병원 관리 프로젝트");
+		add(l1);
+		
+		JButton j1 = new JButton("회원관리");
+		JButton j2 = new JButton("예약관리");
+		JButton j3 = new JButton("진료관리");
+		JButton j4 = new JButton("로그아웃");
+		add(j1);
+		add(j2);
+		add(j3);
+		add(j4);
+		
+		j1.setBounds(200, 110, 100, 30);
+		j2.setBounds(330, 110, 100, 30);
+		
+		add(p);
+		setSize(500, 500);
+		setTitle("메뉴 화면");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		
+		
+		// 회원관리 버튼 눌림 감지
+		j1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		// 예약관리 버튼 눌림 감지
+		j2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		// 진료관리 버튼 눌림 감지
+		j3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		// 로그아웃 버튼 눌림 감지
+		j4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	
+}
