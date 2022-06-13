@@ -10,6 +10,7 @@ public class MemberDto {
 	String visitReason;
 	// memberdto 변경
 	// memberdto 변경 2
+	// 멤버 push 확인
 	public int getMemberID() {
 		return memberID;
 	}
