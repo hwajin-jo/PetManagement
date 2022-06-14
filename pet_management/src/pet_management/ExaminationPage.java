@@ -10,8 +10,8 @@ import java.util.StringTokenizer;
 
 import javax.swing.*;
 
-import Examination.ExaminationDao;
-import Examination.ExaminationDto;
+import examination.ExaminationDao;
+import examination.ExaminationDto;
 
 public class ExaminationPage extends JFrame {
 
