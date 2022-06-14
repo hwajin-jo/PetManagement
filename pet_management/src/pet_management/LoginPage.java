@@ -23,8 +23,8 @@ public class LoginPage extends JFrame{
 		BufferedImage myPicture;
 		BufferedImage myPicture2;
 		try {
-			myPicture = ImageIO.read(new File("C:\\STUDY\\pet_management\\id.png"));	
-			myPicture2 = ImageIO.read(new File("C:\\STUDY\\pet_management\\pwd.png"));
+			myPicture = ImageIO.read(new File("C:\\git\\pet_management\\id.png"));	
+			myPicture2 = ImageIO.read(new File("C:\\git\\pet_management\\pwd.png"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture2));
 			add(picLabel);
