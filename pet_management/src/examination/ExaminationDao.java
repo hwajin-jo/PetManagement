@@ -1,4 +1,4 @@
-package Examination;
+package examination;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

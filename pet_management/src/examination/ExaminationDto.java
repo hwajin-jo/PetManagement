@@ -1,4 +1,4 @@
-package Examination;
+package examination;
 
 public class ExaminationDto {
 	int examID;
